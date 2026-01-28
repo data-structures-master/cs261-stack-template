@@ -136,4 +136,21 @@ jobs:
           command: python -m unittest tests_autograder.tests_all.TestStack.test_pop_state
           timeout: 10
           max-score: 1
- 
+          
+       # ---------- Reporter ----------
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          INSTANTIATION_RESULTS: "${{ steps.instantiation.outputs.result }}"
+          INITIALLY_EMPTY_RESULTS: "${{ steps.initially_empty.outputs.result }}"
+          INITIAL_POP_RAISES_RESULTS: "${{ steps.initial_pop_raises.outputs.result }}"
+          INITIAL_PEEK_RAISES_RESULTS: "${{ steps.initial_peek_raises.outputs.result }}"
+          INITIAL_PUSH_RESULTS: "${{ steps.initial_push.outputs.result }}"
+          PEEK_ONE_RESULTS: "${{ steps.peek_one.outputs.result }}"
+          POP_ONE_RESULTS: "${{ steps.pop_one.outputs.result }}"
+          PEEK_TWO_RESULTS: "${{ steps.peek_two.outputs.result }}"
+          PEEK_STATE_RESULTS: "${{ steps.peek_state.outputs.result }}"
+          POP_TWO_NONTRIVIAL_VALUES_RESULTS: "${{ steps.pop_two_nontrivial_values.outputs.result }}"
+          POP_STATE_RESULTS: "${{ steps.pop_state.outputs.result }}"
+        with:
+          runners: instantiation,initially_empty,initial_pop_raises,initial_peek_raises,initial_push,peek_one,pop_one,peek_two,peek_state,pop_two_nontrivial_values,pop_state
