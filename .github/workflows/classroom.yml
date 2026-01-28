@@ -1,0 +1,139 @@
+name: Stack Autograding
+
+on: [push]
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      # ---------- Individual Tests (Stack) ----------
+
+      - name: Instantiation
+        id: instantiation
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Instantiation
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_instantiation
+          timeout: 10
+          max-score: 1
+
+      - name: Initially Empty
+        id: initially_empty
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Initially Empty
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_initially_empty
+          timeout: 10
+          max-score: 1
+
+      - name: Initial Pop Raises
+        id: initial_pop_raises
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Initial Pop Raises
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_initial_pop
+          timeout: 10
+          max-score: 1
+
+      - name: Initial Peek Raises
+        id: initial_peek_raises
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Initial Peek Raises
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_initial_peek
+          timeout: 10
+          max-score: 1
+
+      - name: Initial Push
+        id: initial_push
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Initial Push
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_initial_push
+          timeout: 10
+          max-score: 1
+
+      - name: Peek One
+        id: peek_one
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Peek One
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_peek_one
+          timeout: 10
+          max-score: 1
+
+      - name: Pop One
+        id: pop_one
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Pop One
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_pop_one
+          timeout: 10
+          max-score: 1
+
+      - name: Peek Two
+        id: peek_two
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Peek Two
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_peek_two
+          timeout: 10
+          max-score: 1
+
+      - name: Peek State
+        id: peek_state
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Peek State
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_peek_state
+          timeout: 10
+          max-score: 1
+
+      - name: Pop Two Nontrivial Values
+        id: pop_two_nontrivial_values
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Pop Two Nontrivial Values
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_pop_two_with_nontrivial_values
+          timeout: 10
+          max-score: 1
+
+      - name: Pop State
+        id: pop_state
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Pop State
+          setup-command: ""
+          command: python -m unittest tests_autograder.tests_all.TestStack.test_pop_state
+          timeout: 10
+          max-score: 1
+ 
